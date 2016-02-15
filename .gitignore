@@ -1,3 +1,4 @@
 /node_modules/
 /typings/
 /server/config.json
+/client/public/libs/
