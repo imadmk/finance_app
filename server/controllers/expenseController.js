@@ -1,7 +1,7 @@
 var db = require('../models/index');
 
+// Create new data of expense
 exports.create = function (req, res) {
-    
     // save and return and the new database of expense to the res object
     db.Expense.create({
         name: req.body.name,
@@ -9,6 +9,7 @@ exports.create = function (req, res) {
         date: req.body.date
     })
     .then(function (newExpense) {
+        // Send all updated database when done
         exports.list(req, res);
     })
     .catch(function (err) {
@@ -16,9 +17,10 @@ exports.create = function (req, res) {
     });
 };
 
+// Get all data of expenses
 exports.list = function (req, res) {
     db.Expense
-        .findAll()
+        .findAll({order: '"date" DESC'})
         .then(function (expenses) {
             res.json(expenses);
         })
@@ -27,10 +29,26 @@ exports.list = function (req, res) {
         });
 };
 
+// Get one expense
+exports.read = function (req, res) {
+    
+    var id = req.params.expenseId;
+    db.Expense
+        .findOne({
+            where: { id: id }
+        })
+        .then(function (expense) {
+            res.json(expense);
+        })
+        .catch(function (err) {
+           return res.status(500).send('error', {error: err});
+        });
+};
+
+// Update a data of expense
 exports.update = function (req, res) {
     
     var id = req.params.expenseId;
-    
     db.Expense.findOne({
         where: { id: id }
     })
@@ -41,6 +59,7 @@ exports.update = function (req, res) {
            date: new Date(req.body.date)
        })
         .then(function () {
+            // Send all updated database when done
             exports.list(req, res);
         })
         .catch(function(err) {
@@ -52,16 +71,17 @@ exports.update = function (req, res) {
     });
 };
 
+// Delete an expense
 exports.delete = function (req, res) {
     
     var id = req.params.expenseId;
-    
     db.Expense.findOne({
         where: {id: id}
     })
     .then(function (expense) {
        expense.destroy()
         .then(function () {
+            // Send all updated database when done
             exports.list(req, res);
         })
         .catch(function(err) {

@@ -11,12 +11,12 @@
     </head>
     <body ng-controller="expenseController">
         <div class="container">
-            <div class="jumbotron">
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <h1>Expense Monitor</h1>
                     <br>
                     <br>
+                    <!--Create new expense form-->
                     <form role="form" class="form-inline">
                         Title: 
                         <input type="text" class="form-control" ng-model="formData.name">
@@ -30,13 +30,14 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
+                <!--Show data of all expenses-->
                 <table class="table table-striped custab">
                     <thead>
                         <tr>
                             <th>Title</th>
                             <th>Amount</th>
                             <th>Date</th>
-                            <th>Action</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="expense in expenseList">
@@ -56,6 +57,50 @@
                 </div>
             </div>
         </div>
+        <!--This Modal is used for editing expense data-->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h5 class="modal-title">Login</h5>
+                    </div>
+
+                    <div class="modal-body">
+                        <!-- The form is placed inside the body of modal -->
+                        <form id="editForm" method="post" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Title</label>
+                                <div class="col-xs-5">
+                                    <input type="text" class="form-control" ng-model="editFormData.name"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Amount</label>
+                                <div class="col-xs-5">
+                                    <input type="text" class="form-control" ng-model="editFormData.amount" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-xs-3 control-label">Date</label>
+                                <div class="col-xs-5">
+                                    <input type="date" class="form-control" ng-model="editFormData.date" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-5 col-xs-offset-3">
+                                    <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="updateExpense(editFormData.id)">Update</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- scripts -->
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -64,7 +109,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-nvd3-directives/0.0.7/angularjs-nvd3-directives.min.js"></script>
-            <!-- angular module -->
+        <!-- angular module -->
         <script type="text/javascript" src="javascripts/main.js"></script>
     </body>
 </html>

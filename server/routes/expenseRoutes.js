@@ -7,6 +7,8 @@ var expense = require('../controllers/expenseController');
 router.get('/', expense.list);
 // Create expense data
 router.post('/', expense.create);
+// Get one expense data
+router.get('/:expenseId', expense.read);
 // Update expense data
 router.put('/:expenseId', expense.update);
 // Delete expense data
