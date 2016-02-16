@@ -1,12 +1,11 @@
 // ANGULAR
 var expenseMonitor = angular.module('expenseMonitor', ['nvd3ChartDirectives', 'btford.socket-io']);
 
-var serverBaseUrl = 'http://localhost:3000';
 var expenseData = [];
 
 // Service to interact with the socket library
 expenseMonitor.factory('socket', function(socketFactory) {
-    var theIoSocket = io.connect(serverBaseUrl);
+    var theIoSocket = io.connect();
 
     var socket = socketFactory({
         ioSocket: theIoSocket
@@ -142,6 +141,7 @@ var monthNames = ["January", "February", "March", "April", "May", "June",
 // Used for updating data one by one for Chart
 
 var updateExpenseData = function(expenses, cb) {
+    expenseData = [];
     expenses.forEach(function(expense) {
         var data = [];
 

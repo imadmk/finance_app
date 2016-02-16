@@ -2,19 +2,6 @@ label, table {
   font-size: 15px;
 }
 
-input {
-  max-width: 200px;
-}
-
-.number {
-  font-weight: bold;
-}
-
-.jumbotron {
-  height: 100%;
-  margin-bottom: 0;
-}
-
 .custab{
     border: 1px solid #ccc;
     padding: 5px;

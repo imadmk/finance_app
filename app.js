@@ -13,7 +13,7 @@ var app = express();
 
 // view engine
 app.set('views', process.cwd() + '/client/views');
-app.set('view engine', 'ejs');
+app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -23,12 +23,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client', 'public')));
 
-//Allow CORS for accessing api other than from this server
+//Allow CORS for accessing api from anywhere other than this server
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
-  if (req.method == 'OPTIONS') {
+  if (req.method === 'OPTIONS') {
     res.status(200).end();
   } else {
     next();

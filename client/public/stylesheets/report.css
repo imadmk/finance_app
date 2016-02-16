@@ -1,0 +1,45 @@
+h1 {
+    text-align: center;
+}
+table {
+    border: 1px solid black;
+    font-size: 15px;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+td, th {
+    text-align: center;
+    padding: 10px;
+}
+tr:nth-child(even) {background-color: #f2f2f2}
+.custab{
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+}
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+.bar {
+    /*fill: steelblue;*/
+}
+.bar:hover {
+    /*fill: brown;*/
+}
+.axis {
+    font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.x.axis path {
+    display: none;
+}
+.text-left {
+    text-align: left
+}
