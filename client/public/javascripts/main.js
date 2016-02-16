@@ -103,7 +103,6 @@ expenseMonitor.controller('expenseController', function($scope, socket, $http) {
         console.log('change data');
        getAll();
     });
-    
 
     // default input form values
     $scope.dateNow = new Date(Date.now());

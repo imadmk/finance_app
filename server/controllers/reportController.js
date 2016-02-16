@@ -34,7 +34,7 @@ exports.send = function (req, res) {
                 // setting the paper options
                 page.property('paperSize', { format: 'A4', orientation: 'portrait', border: '1cm' });
                 // render the pdf and send it to the client
-                page.render('/client/file/report.pdf').then(function (err) {
+                page.renderBase64('/client/file/report.pdf').then(function (err) {
                    res.sendFile('/client/file/report.pdf');
                    page.close();
                    ph.exit(); 
